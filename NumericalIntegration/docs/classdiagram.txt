@@ -1,0 +1,16 @@
+@startuml
+class Main{
+main(...)
+}
+
+class Integrator{
+{static} + integrate(f:Function, lowerBound:double, upperBound:double, stepSize:double, integrationMethod:String):double
+{static} - integrateOneStep(f:Function, x_i:double, stepSize:double, integrationMethod:String):double
+{static} - trapezoidIntegration(f:Function, x_i:double, stepSize:double):double
+{static} - simpsonIntegration(f:Function, x_i:double, stepSize:double):double
+{static} - simpson38Integration(f:Function, x_i:double, stepSize:double):double
+{static} - booleIntegration(f:Function, x_i:double, stepSize:double):double
+}
+
+Main ..> Integrator
+@enduml
