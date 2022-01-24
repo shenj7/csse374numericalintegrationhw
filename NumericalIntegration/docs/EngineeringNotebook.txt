@@ -1,0 +1,21 @@
+1) Class diagram: see classdiagram.png
+
+2) Design decisions (numerical integration):
+	- Taking in the parameters for integration
+		- This allows customers to create custom integrators, without having to change our codebase.
+	- Creating an interface instead of a concrete class of Integrator
+		- This allows us more flexibility if we want to add a different kind of integrator - see feature 2
+
+3) Major tradeoffs (numerical integration):
+	- Using the template pattern instead of the strategy pattern makes it so we don't have some features of the strategy pattern
+		- Example: changing behavior at runtime
+
+4) Design decisions (area under a curve):
+	- Having an optional method to call makes us think that using the template method with a hook would be useful
+		- To do it this way, we create a wantAreaUnderCurve() function in the abstract class.
+		- This allows for us to override the function whenever a customer wants to find the area under a curve vs integrating a function
+
+5) Major tradeoffs (area under a curve):
+	- Maintenance is hard
+		- Less flexible: a change in the template could cause major changes in the various implementations due to the dependency on the concrete implementations
+		

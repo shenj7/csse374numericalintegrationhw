@@ -20,12 +20,17 @@ public class Main {
 		
 		for(String functionText : functionTextInSortedOrder) {
 			Function<Double, Double> f_x = functionMap.get(functionText);
+			Integrator trapInt = new CustomIntegrator(f_x, lower_bound, upper_bound, step_size, new int[] {1, 1}, 1, "trapezoid");
+			Integrator simpInt = new CustomIntegrator(f_x, lower_bound, upper_bound, step_size, new int[] {1, 4, 1}, 2, "simpson");
+			Integrator threeeightInt = new CustomIntegrator(f_x, lower_bound, upper_bound, step_size, new int[] {1, 3, 3, 1}, 3, "3/8");
+			Integrator booleInt = new CustomIntegrator(f_x, lower_bound, upper_bound, step_size, new int[] {7, 32, 12, 32, 7}, 4, "boole");
 
 			System.out.println("Definite integral of "+functionText+" from "+lower_bound+" to "+upper_bound+":");
-			Integrator.integrate(f_x, lower_bound, upper_bound, step_size, "trapezoid");
-			Integrator.integrate(f_x, lower_bound, upper_bound, step_size, "simpson");
-			Integrator.integrate(f_x, lower_bound, upper_bound, step_size, "3/8");
-			Integrator.integrate(f_x, lower_bound, upper_bound, step_size, "boole");
+			
+			trapInt.integrate();
+			simpInt.integrate();
+			threeeightInt.integrate();
+			booleInt.integrate();
 			
 			System.out.println();
 		}
